@@ -1,0 +1,15 @@
+# Docker Compose file for Inspect's Docker sandbox (used by script 04).
+#
+# It matches Inspect's built-in default (same image, no network) with one
+# change: a working directory. Inspect's image doesn't set one, so without
+# this every command starts in "/" and the sample files land at the top of
+# the filesystem. With it, the agent starts in /workspace, which holds only
+# the sample's files.
+services:
+  default:                              # Inspect runs tool commands in the service named "default"
+    image: aisiuk/inspect-tool-support  # Inspect's standard sandbox image (has bash, python, etc.)
+    command: tail -f /dev/null          # keep the container alive until Inspect is done with it
+    init: true                          # clean up zombie processes left by the agent's commands
+    network_mode: none                  # no network at all: the agent can't reach the internet
+    working_dir: /workspace             # Docker creates this folder when the container starts
+    stop_grace_period: 1s

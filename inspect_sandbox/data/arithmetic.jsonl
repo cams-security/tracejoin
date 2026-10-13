@@ -1,0 +1,6 @@
+{"id": "add-1", "question": "What is 12 + 30?", "answer": "42", "difficulty": "easy"}
+{"id": "sub-1", "question": "What is 100 - 58?", "answer": "42", "difficulty": "easy"}
+{"id": "mul-1", "question": "What is 7 * 6?", "answer": "42", "difficulty": "easy"}
+{"id": "mul-2", "question": "What is 23 * 19?", "answer": "437", "difficulty": "medium"}
+{"id": "div-1", "question": "What is 1764 / 42?", "answer": "42", "difficulty": "medium"}
+{"id": "mix-1", "question": "What is (15 + 6) * 3 - 21?", "answer": "42", "difficulty": "hard"}

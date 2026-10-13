@@ -1,0 +1,15 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv
+
+# Inspect sandbox: API keys, eval logs and files written by test tools
+.env
+inspect_sandbox/logs/
+inspect_sandbox/output/
