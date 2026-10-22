@@ -71,6 +71,11 @@ def print_header(log: EvalLog) -> None:
 def print_sample(sample) -> None:
     print(f"\n{'=' * 80}\nSAMPLE {sample.id} (epoch {sample.epoch})\n{'=' * 80}")
 
+    # Script 04 records the sandbox's container name. Falco tags its alerts
+    # with the same name, so this is the key that joins the two logs.
+    if "tracejoin_container" in (sample.metadata or {}):
+        print(f"Container: {sample.metadata['tracejoin_container']}")
+
     # --- MESSAGES: the conversation --------------------------------------
     print("\n-- Messages (what the model saw and said) --")
     for message in sample.messages:

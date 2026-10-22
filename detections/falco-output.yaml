@@ -1,0 +1,43 @@
+# TraceJoin — Falco output configuration (drop-in for /etc/falco/config.d/)
+#
+# These keys are top-level Falco config. On Falco 0.45 the schema is strict:
+# putting them in the wrong section of falco.yaml fails validation, so keep
+# them in their own config.d file at column 0.
+#
+# Deploy: copy to /etc/falco/config.d/tracejoin-output.yaml in the telemetry
+# VM, create the log dir, then restart Falco:
+#   sudo mkdir -p /var/log/falco
+#   sudo systemctl restart falco-modern-bpf
+#
+# The JSON lines written here are what the run-ID join reads and merges with
+# the Inspect eval log (keyed on container.name).
+
+json_output: true
+json_include_output_property: true
+
+file_output:
+  enabled: true
+  keep_alive: false
+  filename: /var/log/falco/tracejoin.jsonl
+
+# Extra JSON fields on every syscall alert, from every rule (the default rules
+# too). They don't change the alert text. The join uses them to trace an alert
+# back through its process ancestors (apid[2] is the grandparent, and so on) to
+# the command Inspect started.
+#
+# config.d files merge with the "append" strategy by default, so this entry is
+# added after falco.yaml's own "suggested_output: true" entry (which supplies
+# container_name and friends) instead of replacing it.
+append_output:
+  - match:
+      source: syscall
+    extra_fields:
+      - proc.name
+      - proc.args
+      - proc.pid
+      - proc.ppid
+      - proc.apid[2]
+      - proc.apid[3]
+      - proc.apid[4]
+      - proc.apid[5]
+      - proc.apid[6]
