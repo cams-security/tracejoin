@@ -38,10 +38,12 @@ Falco (eBPF, in the VM kernel) ─────────────┘       
 Requires Python 3.12+ and [`uv`](https://docs.astral.sh/uv/). From the repo root:
 
 ```sh
-uv sync                      # install Inspect and dependencies
+uv sync                                    # install Inspect and dependencies
+source .venv/bin/activate
 cd inspect_sandbox
-inspect eval scripts/01_hello_world.py     # runs offline with a free mock model
-inspect view                                # browse the run in the log viewer
+cp .env.example .env                       # default model: Inspect's free mock model
+inspect eval scripts/01_hello_world.py     # runs offline, no API key needed
+inspect view                               # browse the run in the log viewer
 ```
 
 The honeytoken demo (what a transcript monitor misses):

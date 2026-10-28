@@ -4,15 +4,16 @@ Seven small scripts for learning [Inspect](https://inspect.aisi.org.uk/), the UK
 
 ## Setup
 
-Inspect is already installed in the project's virtual environment. Activate it and run everything from this folder:
+Install the project from the repo root with `uv sync`, then activate it and run everything from this folder:
 
 ```sh
-cd ResearchShop/inspect_sandbox
+cd inspect_sandbox
 source ../.venv/bin/activate
+cp .env.example .env
 inspect --version
 ```
 
-`.env` in this folder sets the default model to `mockllm/model` and the log folder to `./logs`. Inspect reads it automatically.
+`.env` sets the default model to `mockllm/model` and the log folder to `./logs`, and Inspect reads it automatically. It is gitignored, so it's also where your API keys go.
 
 ## The scripts
 

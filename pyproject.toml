@@ -1,14 +1,14 @@
 [project]
-name = "researchshop"
+name = "tracejoin"
 version = "0.1.0"
-description = "Add your description here"
+description = "Join host telemetry (Falco/eBPF) to AI-agent eval runs (Inspect) so detection rules catch what transcript monitors miss."
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
     "anthropic>=1.11.0",
     "inspect-ai>=0.3.276",
-    "mlx>=0.32.3",
-    "mlx-lm>=0.32.0",
+    "mlx>=0.32.3; sys_platform == 'darwin' and platform_machine == 'arm64'",
+    "mlx-lm>=0.32.0; sys_platform == 'darwin' and platform_machine == 'arm64'",
     "openai>=3.25.0",
     "python-dotenv>=1.2.4",
 ]
